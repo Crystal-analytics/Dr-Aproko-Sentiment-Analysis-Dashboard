@@ -1,8 +1,0 @@
-streamlit
-snscrape
-pandas
-nltk
-wordcloud
-matplotlib
-networkx
-pyvis
