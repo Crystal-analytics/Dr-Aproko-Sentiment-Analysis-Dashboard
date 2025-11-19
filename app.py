@@ -3,8 +3,7 @@ import pandas as pd
 import io
 from datetime import datetime
 import re
-from utils import (load_data, preprocess_text, vader_sentiment, hf_sentiment,
-                   extract_topics, get_top_engagers, get_health_themes)
+from pages.utils import *
 
 # Page config
 st.set_page_config(page_title="🩺 Dr Aproko Sentiment Dashboard",
