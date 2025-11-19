@@ -117,7 +117,7 @@ st.pyplot(fig)
 
 # Bar: Top 5 Health Themes
 themes = get_health_themes(df)
-    fig_bar_themes = px.bar(x=themes['theme'],
+fig_bar_themes = px.bar(x=themes['theme'],
                             y=themes['count'],
                             color='count',
                             color_continuous_scale='Oranges',
