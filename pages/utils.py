@@ -5,9 +5,30 @@ from transformers import pipeline
 from top2vec import Top2Vec
 import nltk
 
-nltk.download('vader_lexicon', quiet=True)
+@st.cache_resource
+def load_hf_pipeline():
+    return pipeline(
+        "sentiment-analysis",
+        model="cardiffnlp/twitter-roberta-base-sentiment-latest",
+        tokenizer="cardiffnlp/twitter-roberta-base-sentiment-latest",
+        device=-1  # CPU only (Streamlit Cloud has no GPU)
+    )
+
+@st.cache_resource(show_spinner="Loading AI sentiment model (first time only)...")
+def load_hf_pipeline():
+    return pipeline(
+        "sentiment-analysis",
+        model="cardiffnlp/twitter-roberta-base-sentiment-latest",
+        tokenizer="cardiffnlp/twitter-roberta-base-sentiment-latest",
+        device=-1  # CPU only – Streamlit Cloud has no GPU
+    )
+
+hf_pipeline = load_hf_pipeline()
 
 sia = SentimentIntensityAnalyzer()
+
+nltk.download('vader_lexicon', quiet=True)
+
 hf_pipeline = pipeline(
     "sentiment-analysis",
     model="cardiffnlp/twitter-roberta-base-sentiment-latest")
