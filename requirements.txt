@@ -1,0 +1,12 @@
+streamlit
+pandas
+plotly
+wordcloud
+matplotlib
+nltk
+scikit-learn
+networkx
+torch==2.4.1 --index-url https://download.pytorch.org/whl/cpu
+transformers==4.45.1
+sentencepiece
+top2vec
