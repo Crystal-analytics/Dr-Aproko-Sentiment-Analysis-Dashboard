@@ -1,0 +1,12 @@
+
+streamlit
+snscrape
+pandas
+nltk
+wordcloud
+matplotlib
+networkx
+pyvis
+beautifulsoup4
+plotly
+requests
