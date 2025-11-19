@@ -4,10 +4,13 @@ plotly==5.24.0
 wordcloud==1.9.3
 matplotlib==3.9.2
 nltk==3.9.1
-# Hugging Face + Torch (light versions that work on Streamlit Cloud)
-torch==2.3.1 --index-url https://download.pytorch.org/whl/cpu
-transformers==4.44.2
-sentencepiece==0.2.0
-top2vec==1.0.0
 scikit-learn==1.5.1
 networkx==3.3
+
+# ←←← THESE TWO LINES ARE THE MOST IMPORTANT ←←←
+torch==2.4.1 --index-url https://download.pytorch.org/whl/cpu
+transformers==4.45.1
+sentencepiece==0.2.0
+top2vec==1.0.27
+
+
