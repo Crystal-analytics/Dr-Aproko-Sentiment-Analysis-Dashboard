@@ -4,6 +4,8 @@ import io
 from datetime import datetime
 import re
 from pages.utils import *
+import matplotlib.pyplot as plt
+from wordcloud import WordCloud
 
 # Page config
 st.set_page_config(page_title="🩺 Dr Aproko Sentiment Dashboard",
@@ -76,7 +78,7 @@ if page == "📊 Infographic Overview":
 
     # Pie chart: Sentiment (VADER quick run)
     sentiment_counts = df['sentiment'].value_counts()
-fig_pie = px.pie(
+    fig_pie = px.pie(
     values=sentiment_counts.values,
     names=sentiment_counts.index,
     title="Overall Sentiment Distribution",
@@ -90,17 +92,30 @@ st.plotly_chart(fig_pie, use_container_width=True)
 
 
   
-    # Word Cloud
-    from wordcloud import WordCloud
-    import matplotlib.pyplot as plt
-    all_text = ' '.join(df['text'].apply(preprocess_text).str[0])
-    wc = WordCloud(width=800, height=400, background_color='white').generate(all_text)
-    fig, ax = plt.subplots()
-    ax.imshow(wc, interpolation='bilinear')
-    ax.axis('off')
-    st.pyplot(fig)
+    # ——————— Word Cloud ———————
+st.subheader("Most Used Words (Word Cloud)")
 
-    # Bar: Top 5 Health Themes
+# Combine all pre-processed tweet text
+all_text = " ".join(df["text"].apply(preprocess_text))
+
+# Generate word cloud
+wordcloud = WordCloud(
+    width=800,
+    height=400,
+    background_color="white",
+    colormap="viridis",
+    max_words=100,
+    contour_width=3,
+    contour_color="steelblue"
+).generate(all_text)
+
+# Display it
+fig, ax = plt.subplots(figsize=(10, 5))
+ax.imshow(wordcloud, interpolation="bilinear")
+ax.axis("off")
+st.pyplot(fig)
+
+# Bar: Top 5 Health Themes
     themes = get_health_themes(df)
     fig_bar_themes = px.bar(x=themes['theme'],
                             y=themes['count'],
