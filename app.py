@@ -94,8 +94,7 @@ st.plotly_chart(fig_pie, use_container_width=True)
     from wordcloud import WordCloud
     import matplotlib.pyplot as plt
     all_text = ' '.join(df['text'].apply(preprocess_text).str[0])
-    wc = WordCloud(width=800, height=400,
-                   background_color='white').generate(all_text)
+    wc = WordCloud(width=800, height=400, background_color='white').generate(all_text)
     fig, ax = plt.subplots()
     ax.imshow(wc, interpolation='bilinear')
     ax.axis('off')
