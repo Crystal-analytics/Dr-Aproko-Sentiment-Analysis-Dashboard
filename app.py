@@ -116,13 +116,13 @@ ax.axis("off")
 st.pyplot(fig)
 
 # Bar: Top 5 Health Themes
-    themes = get_health_themes(df)
+themes = get_health_themes(df)
     fig_bar_themes = px.bar(x=themes['theme'],
                             y=themes['count'],
                             color='count',
                             color_continuous_scale='Oranges',
                             title="Top 5 Health Themes")
-    st.plotly_chart(fig_bar_themes, use_container_width=True)
+ st.plotly_chart(fig_bar_themes, use_container_width=True)
 
     # High Interaction Health Posts
     health_df = df[df['text'].str.contains('health|doctor|vaccine|pain|body',
