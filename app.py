@@ -75,16 +75,21 @@ if page == "📊 Infographic Overview":
         st.metric("Followers", f"{followers:,}", delta="+1.63M")
 
     # Pie chart: Sentiment (VADER quick run)
-    df['vader_sentiment'] = df['text'].apply(vader_sentiment)
-    sentiment_counts = df['vader_sentiment'].value_counts()
-    col5, col6 = st.columns(2)
-    with col5:
-        fig_pie = px.pie(
-            values=sentiment_counts.values,
-            names=sentiment_counts.index,
-            color_discrete_sequence=['#00D4AA', '#FF6B6B', '#95A5A6'])
-        st.plotly_chart(fig_pie, use_container_width=True)
+    sentiment_counts = df['sentiment'].value_counts()
+fig_pie = px.pie(
+    values=sentiment_counts.values,
+    names=sentiment_counts.index,
+    title="Overall Sentiment Distribution",
+    color=sentiment_counts.index,
+    color_discrete_map={'Positive':'#00CC96', 'Negative':'#EF553B', 'Neutral':'#636EFA'},
+    hole=0.4
+)
+fig_pie.update_traces(textposition='inside', textinfo='percent+label')
+fig_pie.update_layout(showlegend=False, height=400)
+st.plotly_chart(fig_pie, use_container_width=True)
 
+
+  
     # Word Cloud
     from wordcloud import WordCloud
     import matplotlib.pyplot as plt
