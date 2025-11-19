@@ -60,7 +60,7 @@ def get_top_engagers(df):
     if mentions.empty:
         return pd.DataFrame({'user': ['No mentions'], 'mentions': [0]})
     top = mentions[0].value_counts().head(10)
-    return pd.DataFrame({'user': top.index, 'mentions': top.values}).reset and returns it
+    return pd.DataFrame({'user': top.index, 'mentions': top.values}).reset_index(drop=True)
 
 
 
